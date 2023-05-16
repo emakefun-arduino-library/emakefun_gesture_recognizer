@@ -10,21 +10,21 @@
 
 || 值 | 描述 |
 | --- | --- | --- |
-| GestureSensor::kDeviceI2cAddressDefault | 0x39 | 扩展板默认I2C地址 |
+| GestureSensor::**kDeviceI2cAddressDefault** | 0x39 | 扩展板默认I2C地址 |
 
 #### 手势类型
 
 | GestureSensor::Gesture | 值 | 描述 |
 | --- | --- | --- |
-| GestureSensor::Gesture::kGestureNone | 0x00 | 无手势动作 |
-| GestureSensor::Gesture::kGestureRightSwipe | 0x01 | 右移动作 |
-| GestureSensor::Gesture::kGestureLeftSwipe | 0x02 | 左移动作 |
-| GestureSensor::Gesture::kGestureBackwardSwipe | 0x03 | 后移动作 |
-| GestureSensor::Gesture::kGestureForwardSwipe | 0x04 | 前移动作 |
-| GestureSensor::Gesture::kGestureUpward | 0x05 | 上拉动作 |
-| GestureSensor::Gesture::kGestureDownward | 0x06 | 下压动作 |
-| GestureSensor::Gesture::kGestureOutOfRange | 0x07 | 离开感应区 |
-| GestureSensor::Gesture::kGestureHover | 0x08 | 悬停 |
+| GestureSensor::Gesture::**kGestureNone** | 0x00 | 无手势动作 |
+| GestureSensor::Gesture::**kGestureRightSwipe** | 0x01 | 右移动作 |
+| GestureSensor::Gesture::**kGestureLeftSwipe** | 0x02 | 左移动作 |
+| GestureSensor::Gesture::**kGestureBackwardSwipe** | 0x03 | 后移动作 |
+| GestureSensor::Gesture::**kGestureForwardSwipe** | 0x04 | 前移动作 |
+| GestureSensor::Gesture::**kGestureUpward** | 0x05 | 上拉动作 |
+| GestureSensor::Gesture::**kGestureDownward** | 0x06 | 下压动作 |
+| GestureSensor::Gesture::**kGestureOutOfRange** | 0x07 | 离开感应区 |
+| GestureSensor::Gesture::**kGestureHover** | 0x08 | 悬停 |
 
 ### 构造函数
 
@@ -65,7 +65,7 @@ void loop() {
   const auto gesture = gesture_sensor.GetGesture();
 
   // 如果捕获到手势（手势不为空）则打印出手势的值
-  if (gesture != GestureSensor::Gesture::kGestureNone) {
+  if (gesture != GestureSensor::Gesture::**kGestureNone) {
     Serial.print("gesture:");
     Serial.println(gesture);
   }
