@@ -22,31 +22,33 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-/**
- * @example get_gesture.ino
- */
-#include <Arduino.h>
-
-// 包含gesture_recognizer.h头文件
 #include "gesture_recognizer.h"
 
-// 创建 GestureRecognizer 实例, I2C地址为0x39 (GestureRecognizer::kDeviceI2cAddressDefault)
-GestureRecognizer gesture_sensor(GestureRecognizer::kDeviceI2cAddressDefault);
+#include <Arduino.h>
+#include <Wire.h>
 
-void setup() {
-  Serial.begin(115200);
-  Serial.println("setup");
+#define GESTURE_ADDRESS (0x01)
 
-  gesture_sensor.Setup();  // 初始化
+GestureRecognizer::GestureRecognizer(const uint8_t device_i2c_address) : device_i2c_address_(device_i2c_address) {
 }
 
-void loop() {
-  // 通过GetGesture获取手势
-  const auto gesture = gesture_sensor.GetGesture();
+void GestureRecognizer::Setup() {
+  Wire.begin();
+}
 
-  // 如果手势的不为空，则打印出手势的值
-  if (gesture != GestureRecognizer::Gesture::kGestureNone) {
-    Serial.print("gesture:");
-    Serial.println(gesture);
+GestureRecognizer::Gesture GestureRecognizer::GetGesture() {
+  Wire.beginTransmission(device_i2c_address_);
+  Wire.write(GESTURE_ADDRESS);
+  auto ret = Wire.endTransmission();
+  if (ret != 0) {
+    Serial.print("Error occurred when i2c writing: ");
+    Serial.println(ret);
+    return kGestureNone;
   }
+
+  Wire.requestFrom(device_i2c_address_, (uint8_t)1);
+  if (Wire.available()) {
+    return static_cast<GestureRecognizer::Gesture>(Wire.read());
+  }
+  return kGestureNone;
 }

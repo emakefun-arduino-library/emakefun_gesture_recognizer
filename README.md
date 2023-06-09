@@ -65,7 +65,7 @@ void loop() {
   const auto gesture = gesture_sensor.GetGesture();
 
   // 如果捕获到手势（手势不为空）则打印出手势的值
-  if (gesture != GestureSensor::Gesture::**kGestureNone) {
+  if (gesture != GestureSensor::Gesture::kGestureNone) {
     Serial.print("gesture:");
     Serial.println(gesture);
   }
