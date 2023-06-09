@@ -2,7 +2,7 @@
 
 这个Arduino库是用于使用`emakefun`的手势识别传感器
 
-## GestureRecognizer API介绍
+## Class GestureRecognizer 介绍
 
 [文档链接](https://emakefun-arduino-library.github.io/emakefun_gesture_recognizer/class_gesture_recognizer.html)
 
